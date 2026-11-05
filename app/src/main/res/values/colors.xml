@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Paleta Corporativa Moderna Slate & Teal -->
+    <color name="teal_header">#3B6F70</color>
+    <color name="teal_button_primary">#3B6F70</color>
+    <color name="teal_button_secondary">#68B5B2</color>
+    <color name="bg_screen">#F8FAFC</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Tipografía y Bordes Slate -->
+    <color name="slate_900">#1E293B</color>
+    <color name="slate_600">#475569</color>
+    <color name="slate_border">#E2E8F0</color>
+    <color name="slate_bg_light">#F1F5F9</color>
+
+    <!-- Acciones Destructivas Soft Red -->
+    <color name="red_light_bg">#FEE2E2</color>
+    <color name="red_dark_text">#DC2626</color>
+
+    <!-- Estado de Citas (Badges) -->
+    <color name="estado_pendiente_bg">#FEF3C7</color>
+    <color name="estado_pendiente_text">#D97706</color>
+    <color name="estado_atendido_bg">#DCFCE7</color>
+    <color name="estado_atendido_text">#15803D</color>
+    <color name="estado_cancelado_bg">#FEE2E2</color>
+    <color name="estado_cancelado_text">#DC2626</color>
+</resources>

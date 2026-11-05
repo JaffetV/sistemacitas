@@ -1,0 +1,154 @@
+openapi: 3.1.0
+info:
+  title: UNAMAD Citas Marketplace API
+  version: 1.0.0
+  description: API inicial multiempresa para marketplace local de citas y recogidas.
+servers:
+  - url: http://localhost:8080/api/v1
+    description: Desarrollo local; producción debe usar HTTPS
+security:
+  - bearerAuth: []
+paths:
+  /categories:
+    get:
+      security: []
+      summary: Listar categorías activas
+      responses:
+        '200': { description: Categorías disponibles }
+  /auth/register/customer:
+    post:
+      security: []
+      summary: Registrar cuenta gratuita de cliente
+      responses:
+        '201': { description: Cuenta creada y token de sesión }
+        '409': { description: Correo o teléfono duplicado }
+  /auth/register/business:
+    post:
+      security: []
+      summary: Registrar propietario y negocio con prueba de 14 días
+      responses:
+        '201': { description: Propietario, negocio y suscripción creados }
+        '409': { description: Correo duplicado }
+  /auth/login:
+    post:
+      security: []
+      summary: Iniciar sesión
+      responses:
+        '200': { description: Perfil y JWT }
+        '401': { description: Credenciales incorrectas }
+  /me:
+    get:
+      summary: Obtener perfil autenticado
+      responses:
+        '200': { description: Perfil }
+        '401': { description: No autenticado }
+  /me/businesses:
+    get:
+      summary: Listar negocios asociados a la cuenta
+      responses:
+        '200': { description: Negocios y roles }
+  /businesses:
+    get:
+      security: []
+      summary: Buscar negocios públicos
+      parameters:
+        - { in: query, name: q, schema: { type: string } }
+        - { in: query, name: categoryId, schema: { type: string, format: uuid } }
+        - { in: query, name: district, schema: { type: string } }
+      responses:
+        '200': { description: Negocios publicados con suscripción vigente }
+    post:
+      summary: Crear un negocio adicional para el usuario autenticado
+      responses:
+        '201': { description: Negocio creado }
+  /businesses/{businessId}:
+    parameters:
+      - { in: path, name: businessId, required: true, schema: { type: string, format: uuid } }
+    get:
+      security: []
+      summary: Detalle de negocio publicado
+      parameters:
+        - { in: path, name: businessId, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200': { description: Negocio }
+        '404': { description: No encontrado }
+  /businesses/{businessId}/listings:
+    parameters:
+      - { in: path, name: businessId, required: true, schema: { type: string, format: uuid } }
+    get:
+      security: []
+      summary: Catálogo público de un negocio
+      parameters:
+        - { in: path, name: businessId, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200': { description: Publicaciones }
+    post:
+      summary: Crear servicio o producto
+      parameters:
+        - { in: path, name: businessId, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '201': { description: Publicación creada }
+        '402': { description: Suscripción vencida }
+        '403': { description: Sin permisos de administración }
+  /businesses/{businessId}/hours:
+    parameters:
+      - { in: path, name: businessId, required: true, schema: { type: string, format: uuid } }
+    get:
+      security: []
+      summary: Consultar horarios de atención
+      responses:
+        '200': { description: Horarios }
+    put:
+      summary: Reemplazar horarios semanales
+      responses:
+        '200': { description: Horarios actualizados }
+  /businesses/{businessId}/reservations:
+    parameters:
+      - { in: path, name: businessId, required: true, schema: { type: string, format: uuid } }
+    get:
+      summary: Consultar reservas del negocio
+      responses:
+        '200': { description: Reservas }
+        '403': { description: No pertenece al negocio }
+  /businesses/{businessId}/reservations/{reservationId}/status:
+    parameters:
+      - { in: path, name: businessId, required: true, schema: { type: string, format: uuid } }
+      - { in: path, name: reservationId, required: true, schema: { type: string, format: uuid } }
+    patch:
+      summary: Cambiar estado de reserva
+      responses:
+        '200': { description: Reserva actualizada }
+        '409': { description: Transición no permitida }
+  /me/reservations:
+    get:
+      summary: Consultar reservas propias
+      responses:
+        '200': { description: Reservas }
+    post:
+      summary: Solicitar cita o pedido para recoger
+      responses:
+        '201': { description: Reserva solicitada; pago pendiente }
+        '409': { description: Horario ocupado o stock insuficiente }
+  /me/reservations/{reservationId}/cancel:
+    parameters:
+      - { in: path, name: reservationId, required: true, schema: { type: string, format: uuid } }
+    post:
+      summary: Cancelar una reserva propia
+      responses:
+        '200': { description: Reserva cancelada }
+        '409': { description: No se permite cancelar en el estado actual }
+  /me/favorites:
+    get:
+      summary: Listar favoritos de la cuenta
+      responses:
+        '200': { description: Favoritos }
+    post:
+      summary: Guardar un negocio favorito
+      responses:
+        '201': { description: Favorito guardado }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

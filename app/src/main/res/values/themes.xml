@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Comunamadsistemacitas" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Estilo Corporativo Ejecutivo con Status Bar Sincronizada -->
+        <item name="colorPrimary">@color/teal_header</item>
+        <item name="colorPrimaryVariant">@color/teal_header</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_button_primary</item>
+
+        <!-- Sincronización de Barra de Estado -->
+        <item name="android:statusBarColor">@color/bg_screen</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+</resources>
