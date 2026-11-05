@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_screen"
+    android:fillViewport="true"
+    tools:context=".view.RegistrarCitaActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Barra de Navegación Limpia y Compacta -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="12dp">
+
+            <!-- Botón Atrás ← -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAtras"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_alignParentStart="true"
+                android:padding="0dp"
+                app:icon="@android:drawable/ic_menu_revert"
+                app:iconGravity="textStart"
+                app:iconTint="@color/slate_900"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Registrar Cita"
+                android:textColor="@color/slate_900"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium" />
+
+            <!-- Botón Inicio 🏠 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnInicio"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_alignParentEnd="true"
+                android:padding="0dp"
+                app:icon="@android:drawable/ic_menu_compass"
+                app:iconGravity="textStart"
+                app:iconTint="@color/slate_900"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </RelativeLayout>
+
+        <!-- Banner Informativo: Horarios del Local -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="14dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="12dp"
+            app:strokeColor="@color/slate_border"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📅 Horario Comercial:"
+                    android:textColor="@color/teal_header"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="6dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="🟢 Lun a Sáb (08:00 - 20:00) | 🔒 Dom: CERRADO"
+                    android:textColor="@color/slate_600"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Formulario Material Design Moderno -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/slate_border"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Campo: Nombre del Cliente -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilCliente"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="👤 Nombre del Cliente"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxStrokeColor="@color/teal_button_primary"
+                    app:hintTextColor="@color/teal_button_primary">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/etCliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        tools:ignore="LabelFor" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Badge Semáforo de Confiabilidad -->
+                <TextView
+                    android:id="@+id/tvSemaforoCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    android:padding="10dp"
+                    android:text="⚪ Ingrese el cliente para evaluar su confiabilidad"
+                    android:textColor="@color/slate_600"
+                    android:textSize="12sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:background="@color/slate_bg_light" />
+
+                <!-- Campo: Número de Teléfono (WhatsApp) -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilTelefono"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    android:hint="📞 Teléfono / WhatsApp (ej. 987654321)"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxStrokeColor="@color/teal_button_primary"
+                    app:hintTextColor="@color/teal_button_primary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etTelefono"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Campo Desplegable: Servicio u Oficio -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilServicio"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    android:hint="🛠️ Servicio / Oficio"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxStrokeColor="@color/teal_button_primary"
+                    app:hintTextColor="@color/teal_button_primary">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/etServicio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        tools:ignore="LabelFor" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Fila Doble: Precio Total + Seña/Anticipo -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <!-- Precio Total -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilPrecio"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:layout_marginBottom="14dp"
+                        android:hint="🏷️ Costo Total (S/)"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxStrokeColor="@color/teal_button_primary"
+                        app:hintTextColor="@color/teal_button_primary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etPrecio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Seña / Anticipo -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilMontoSena"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginBottom="14dp"
+                        android:hint="💳 Seña/Abono (S/)"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxStrokeColor="@color/teal_button_primary"
+                        app:hintTextColor="@color/teal_button_primary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etMontoSena"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <!-- Tira Horizontal de Días Abiertos -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Selección de día de la semana:"
+                    android:textColor="@color/slate_600"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:layout_marginBottom="10dp">
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/cgTiraDias"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:singleSelection="true">
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipDia1"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🟢 Hoy" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipDia2"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🟢 Mañana" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipDia3"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🟢 Día 3" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipDia4"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🟢 Día 4" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipDia5"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🟢 Día 5" />
+                    </com.google.android.material.chip.ChipGroup>
+                </HorizontalScrollView>
+
+                <!-- Campo: Fecha y Hora Definida -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFechaHora"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="📅 Fecha y Hora de la Reserva"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxStrokeColor="@color/teal_button_primary"
+                    app:hintTextColor="@color/teal_button_primary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFechaHora"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Selector de Bloques de Horarios (Time Slots) -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Turnos disponibles (Time Slots):"
+                    android:textColor="@color/slate_600"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:layout_marginBottom="10dp">
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/cgBloquesHorarios"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:singleSelection="true">
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip0900"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="09:00 AM" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip1000"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10:00 AM" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip1100"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="11:00 AM" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip1400"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="02:00 PM" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip1500"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="03:00 PM" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip1600"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="04:00 PM" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chip1700"
+                            style="@style/Widget.MaterialComponents.Chip.Choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="05:00 PM" />
+                    </com.google.android.material.chip.ChipGroup>
+                </HorizontalScrollView>
+
+                <!-- Estimación de Duración -->
+                <TextView
+                    android:id="@+id/tvEstimacionFin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:padding="8dp"
+                    android:background="#E0F2F1"
+                    android:text="⏰ Seleccione horario y servicio para calcular hora fin"
+                    android:textColor="@color/teal_header"
+                    android:textSize="12sp"
+                    android:fontFamily="sans-serif-medium" />
+
+                <!-- Alerta de Conflicto -->
+                <TextView
+                    android:id="@+id/tvAlertaConflicto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    android:padding="10dp"
+                    android:background="@color/red_light_bg"
+                    android:textColor="@color/red_dark_text"
+                    android:textSize="12sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    tools:text="⚠️ Este horario se cruza con otra reserva activa." />
+
+                <!-- Opción: Notificar por WhatsApp -->
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cbNotificarWhatsapp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:checked="true"
+                    android:text="Enviar confirmación por WhatsApp al guardar"
+                    android:textColor="@color/slate_900"
+                    android:textSize="14sp" />
+
+                <!-- Previsualización WhatsApp -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilMensajeWhatsappPreview"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:hint="Vista Previa de Plantilla WhatsApp (Editable)"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxStrokeColor="#25D366"
+                    app:hintTextColor="#25D366">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etMensajeWhatsappPreview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:minLines="3"
+                        android:textSize="13sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Botón Principal en Tipo Oración con 16dp de Radio -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnGuardar"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="Guardar reserva"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/teal_button_primary"
+                    app:cornerRadius="16dp"
+                    app:icon="@android:drawable/ic_menu_save"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    app:iconTint="@color/white"
+                    app:elevation="2dp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Tarjeta Flotante de Vista Previa -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardVistaPrevia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="24dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/slate_border"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VISTA PREVIA EN TIEMPO REAL"
+                    android:textColor="@color/teal_header"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.08"
+                    android:layout_marginBottom="6dp" />
+
+                <TextView
+                    android:id="@+id/tvPreviewCliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cliente: (Por completar)"
+                    android:textColor="@color/slate_900"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvPreviewServicio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Servicio: (Sin seleccionar)"
+                    android:textColor="@color/slate_600"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvPreviewCobro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Total: S/ 0.00 | Seña: S/ 0.00 | Saldo: S/ 0.00"
+                    android:textColor="@color/teal_header"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</ScrollView>

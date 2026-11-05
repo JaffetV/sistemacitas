@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_screen"
+    android:fillViewport="true"
+    tools:context=".view.DetalleCitaActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Barra de Navegación Limpia y Compacta -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="12dp">
+
+            <!-- Botón Atrás ← -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAtras"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_alignParentStart="true"
+                android:padding="0dp"
+                app:icon="@android:drawable/ic_menu_revert"
+                app:iconGravity="textStart"
+                app:iconTint="@color/slate_900"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Detalle de Cita"
+                android:textColor="@color/slate_900"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium" />
+
+            <!-- Botón Inicio 🏠 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnInicio"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_alignParentEnd="true"
+                android:padding="0dp"
+                app:icon="@android:drawable/ic_menu_compass"
+                app:iconGravity="textStart"
+                app:iconTint="@color/slate_900"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </RelativeLayout>
+
+        <!-- Tarjeta contenedora de la información de la cita -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/slate_border"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/tvDetalleCita"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cargando detalles de la cita..."
+                    android:textColor="@color/slate_900"
+                    android:textSize="15sp"
+                    android:lineSpacingExtra="6dp"
+                    android:fontFamily="sans-serif" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Botones de Acción con Jerarquía Visual y Radio de 16dp -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="24dp">
+
+            <!-- 1. Botón Primario Destacado: Marcar como atendido -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAtendido"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginBottom="12dp"
+                android:text="Marcar como atendido"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:backgroundTint="#2E7D32"
+                app:cornerRadius="16dp"
+                app:icon="@android:drawable/checkbox_on_background"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:iconTint="@color/white"
+                app:elevation="2dp" />
+
+            <!-- 2. Botón de WhatsApp -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnNotificarWhatsapp"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginBottom="12dp"
+                android:text="Enviar aviso por WhatsApp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="#25D366"
+                app:cornerRadius="16dp"
+                app:icon="@android:drawable/ic_menu_send"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:iconTint="@color/white"
+                app:elevation="2dp" />
+
+            <!-- 3. Botón Tono Secundario Neutro: Cancelar cita -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancelado"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginBottom="12dp"
+                android:text="Cancelar cita"
+                android:textColor="@color/slate_900"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/slate_bg_light"
+                app:cornerRadius="16dp"
+                app:icon="@android:drawable/ic_menu_close_clear_cancel"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:iconTint="@color/slate_900"
+                app:elevation="0dp" />
+
+            <!-- 4. Botón de Alerta Destructiva: Eliminar cita -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEliminar"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:text="Eliminar cita"
+                android:textColor="@color/red_dark_text"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/red_light_bg"
+                app:strokeColor="@color/red_dark_text"
+                app:strokeWidth="1dp"
+                app:cornerRadius="16dp"
+                app:icon="@android:drawable/ic_menu_delete"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:iconTint="@color/red_dark_text"
+                app:elevation="0dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

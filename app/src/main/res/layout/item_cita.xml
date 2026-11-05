@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardCita"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="6dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/slate_border"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Fila 1: Nombre del Cliente y Badge de Estado -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp">
+
+            <TextView
+                android:id="@+id/tvCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/tvEstado"
+                android:layout_marginEnd="8dp"
+                android:text="Nombre del Cliente"
+                android:textColor="@color/slate_900"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium"
+                tools:text="Juan Pérez" />
+
+            <TextView
+                android:id="@+id/tvEstado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@color/estado_pendiente_bg"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:text="PENDIENTE"
+                android:textColor="@color/estado_pendiente_text"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                tools:text="PENDIENTE" />
+        </RelativeLayout>
+
+        <!-- Fila 2: Servicio -->
+        <TextView
+            android:id="@+id/tvServicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Servicio"
+            android:textColor="@color/slate_600"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"
+            tools:text="Consulta Médica General" />
+
+        <!-- Fila 3: Fecha y Hora -->
+        <TextView
+            android:id="@+id/tvFechaHora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Fecha y hora"
+            android:textColor="@color/slate_600"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif-light"
+            tools:text="28/10 15:00" />
+
+        <!-- Línea divisora sutil -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/slate_border" />
+
+        <!-- Fila 4: Precio -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="Costo del servicio"
+                android:textColor="@color/slate_600"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-light" />
+
+            <TextView
+                android:id="@+id/tvPrecio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="S/ 0.00"
+                android:textColor="@color/teal_header"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium"
+                tools:text="S/ 50.00" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

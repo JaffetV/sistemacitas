@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-marketplace_owner}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Define POSTGRES_PASSWORD en backend/.env}
+      POSTGRES_DB: ${POSTGRES_DB:-marketplace}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD:?Define APP_DB_PASSWORD en backend/.env}
+    volumes:
+      - marketplace_pgdata:/var/lib/postgresql/data
+      - ./db/001_bootstrap.sh:/docker-entrypoint-initdb.d/001_bootstrap.sh:ro
+      - ./db/002_marketplace.sql:/docker-entrypoint-initdb.d/002_marketplace.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 8080
+      DATABASE_URL: postgres://marketplace_app:${APP_DB_PASSWORD}@db:5432/${POSTGRES_DB:-marketplace}
+      JWT_SECRET: ${JWT_SECRET:?Define JWT_SECRET en backend/.env}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-}
+    ports:
+      - "8080:8080"
+
+volumes:
+  marketplace_pgdata:
